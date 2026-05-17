@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMUEL OLANIYI | ABOUT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --rb-navy:   #000b29;
+            --rb-royal:  #001a5d;
+            --rb-red:    #da0a1c;
+            --rb-yellow: #ffcc00;
+            --rb-silver: #dae0e6;
+            --white:     #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { overflow-x: hidden; scroll-behavior: smooth; }
+        body { font-family: 'Montserrat', sans-serif; color: var(--white); }
+
+        /* ─── NAVIGATION ─────────────────────────────── */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 18px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 200;
+            background: rgba(0, 11, 41, 0.92);
+            backdrop-filter: blur(20px);
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.3rem;
+            letter-spacing: -1px;
+            font-style: italic;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        nav {
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(20px);
+            padding: 10px 28px;
+            border-radius: 100px;
+            border: 1px solid rgba(255,255,255,0.12);
+            display: flex;
+            gap: 24px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+        nav a:hover { opacity: 1; color: var(--rb-yellow); }
+        nav a.active { opacity: 1; color: var(--rb-yellow); }
+
+        .cta-btn {
+            background: var(--white);
+            color: var(--rb-navy);
+            padding: 11px 24px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .cta-btn:hover { background: var(--rb-red); color: #fff; }
+
+        /* HAMBURGER STYLES */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: var(--white);
+            transition: 0.3s;
+        }
+
+        /* ─── HERO ────────────────────────────────────── */
+        #hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #000b29 0%, #001a5d 60%, #0a0a3e 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.25;
+            pointer-events: none;
+            animation: drift linear infinite;
+        }
+        .b1 { width: 700px; height: 700px; background: var(--rb-silver); top: -15%; left: -10%; animation-duration: 28s; }
+        .b2 { width: 900px; height: 900px; background: #001a5d; bottom: -20%; right: -10%; animation-duration: 38s; animation-direction: reverse; }
+
+        @keyframes drift {
+            0%   { transform: translate(0,0) rotate(0deg) scale(1); }
+            50%  { transform: translate(120px,80px) rotate(180deg) scale(1.15); }
+            100% { transform: translate(0,0) rotate(360deg) scale(1); }
+        }
+
+        .hero-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--rb-red);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        #hero h1 {
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 900;
+            letter-spacing: -4px;
+            text-transform: uppercase;
+            line-height: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        #hero .hero-sub {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.45);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ─── ABOUT ME SECTION ────────────────────────── */
+        #about-me {
+            background: #0a0a0a;
+            padding: 140px 10%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #about-me::before {
+            content: 'SAM';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 22vw;
+            font-weight: 900;
+            color: rgba(255,255,255,0.02);
+            letter-spacing: -10px;
+            pointer-events: none;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .section-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--rb-red);
+            margin-bottom: 18px;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -3px;
+            line-height: 1;
+            color: var(--white);
+        }
+
+        .accent-line {
+            width: 56px;
+            height: 4px;
+            background: var(--rb-red);
+            margin: 24px auto 0;
+        }
+
+        .about-body {
+            max-width: 680px;
+            margin: 50px auto 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-body p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 24px;
+        }
+
+        .view-btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--white);
+            padding: 16px 36px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid var(--rb-red);
+            transition: all 0.35s ease;
+            margin-top: 12px;
+        }
+        .view-btn:hover {
+            background: var(--rb-red);
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(218,10,28,0.35);
+        }
+
+        /* ─── RED BULL BASEMENT SECTION ──────────────── */
+        #rb-basement {
+            background: #060606;
+            padding: 140px 10%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #rb-basement::before {
+            content: 'BASEMENT';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14vw;
+            font-weight: 900;
+            color: rgba(255,255,255,0.02);
+            letter-spacing: -6px;
+            pointer-events: none;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        #rb-basement .rb-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        #rb-basement p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: rgba(255,255,255,0.55);
+            margin-top: 50px;
+            margin-bottom: 40px;
+        }
+
+        .rb-badge {
+            display: inline-block;
+            background: rgba(218,10,28,0.12);
+            border: 1px solid rgba(218,10,28,0.3);
+            color: var(--rb-red);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            border-radius: 100px;
+            margin-bottom: 24px;
+        }
+
+        /* ─── FOOTER ──────────────────────────────────── */
+        footer {
+            background: #000;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            padding: 80px 10% 40px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 60px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .footer-logo { font-weight: 900; font-size: 1.6rem; letter-spacing: -1px; font-style: italic; margin-bottom: 16px; }
+        .footer-tagline { font-size: 0.78rem; color: rgba(255,255,255,0.35); line-height: 1.8; letter-spacing: 0.5px; }
+        .footer-nav { display: flex; gap: 80px; }
+        .footer-col { display: flex; flex-direction: column; gap: 14px; }
+        .footer-col-title {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--rb-red);
+            margin-bottom: 6px;
+        }
+        .footer-col a { text-decoration: none; color: rgba(255,255,255,0.45); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.5px; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--white); }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.2);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .footer-credit { color: rgba(255,255,255,0.15); }
+
+        /* ─── RESPONSIVE ──────────────────────────────── */
+        @media (max-width: 768px) {
+            header { padding: 18px 24px; justify-content: space-between; }
+            .cta-btn { display: none; }
+            
+            .hamburger { display: flex; }
+
+            /* Mobile Nav Overlay */
+            nav {
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--rb-navy);
+                border-radius: 0;
+                border: none;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+                z-index: 1000;
+            }
+
+            nav.active { display: flex; }
+            nav a { font-size: 1.5rem; opacity: 1; }
+
+            /* Hamburger Animation to 'X' */
+            .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+            /* Stacking & Centering on Phone */
+            #hero h1 { font-size: 4.5rem; }
+            #about-me, #rb-basement { padding: 80px 10%; text-align: center; }
+            .about-body { margin-top: 30px; }
+
+            .footer-inner { flex-direction: column; align-items: center; text-align: center; gap: 40px; }
+            .footer-nav { gap: 40px; flex-direction: column; align-items: center; }
+            .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <header data-aos="fade-down" data-aos-duration="900">
+        <a href="index.html" class="logo">SAMUEL O.</a>
+        
+        <!-- Hamburger Menu -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav id="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="background.html">Background</a>
+            <a href="idea.html">Ideas</a>
+           <a href="reference.html">References</a>
+           <a href="environmental.html">Environmental</a>
+        <a href="creativedirection.html">Creative</a><a href="pitch.html" class="active">Pitch</a>
+        <a href="reflection.html">Reflection</a><a href="reference.html">References</a>
+    </nav>
+        </nav>
+        <a href="#" class="cta-btn">Get In Touch →</a>
+    </header>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div data-aos="zoom-out" data-aos-duration="1400">
+            <p class="hero-label">Who Am I?</p>
+            <h1>About Me</h1>
+            
+        </div>
+    </section>
+
+    <!-- ABOUT ME -->
+    <section id="about-me">
+        <div data-aos="fade-up" data-aos-duration="900">
+            <div class="section-label">01 — About Me</div>
+            <h2 class="section-title">Who I Am</h2>
+            <div class="accent-line"></div>
+        </div>
+        <div class="about-body" data-aos="fade-up" data-aos-duration="900" data-aos-delay="150">
+            <p>
+                Hi, I'm Samuel a university student and The University of Northampton with a passion for marketing and brand storytelling. I'm currently studying digital marketing , where I've been exploring different frameworks of marketing.
+            </p>
+            <p>
+                This portfolio documents my journey through a module centred around real-world marketing campaigns. Over the past weeks I've been developing my understanding of how brands connect with its target audience,this portfolio will showcase what I have learn't throughout the semester.
+            </p>
+            <a href="idea.html" class="view-btn">View My Ideas →</a>
+        </div>
+    </section>
+
+    <!-- RED BULL BASEMENT -->
+    <section id="rb-basement">
+        <div class="rb-inner">
+            <div data-aos="fade-up" data-aos-duration="900">
+                <div class="rb-badge">The Project</div>
+                <div class="section-label">02 — The Campaign</div>
+                <h2 class="section-title">Want To Find<br>Out More About<br>Red Bull Basement?</h2>
+                <div class="accent-line"></div>
+            </div>
+            <p data-aos="fade-up" data-aos-duration="900" data-aos-delay="150">
+                Red Bull Basement is a global initiative that challenges young people to create ideas that use technology to address real-world problems. This portfolio dives deep into the research, strategy, and creative thinking behind a campaign designed to bring that initiative to life.
+            </p>
+            <a href="background.html" class="view-btn" data-aos="fade-up" data-aos-duration="800" data-aos-delay="250">View Research →</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner" data-aos="fade-up" data-aos-duration="800">
+            <div class="footer-brand">
+                <div class="footer-logo">SAMUEL O.</div>
+                <p class="footer-tagline">Red Bull Basement Portfolio<br>University Module — 2026</p>
+            </div>
+            <div class="footer-nav">
+                <div class="footer-col">
+                    <div class="footer-col-title">Pages</div>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="background.html">Background</a>
+                    <a href="idea.html">Ideas</a>
+                    <a href="reference.html">References</a>
+                </div>
+                <div class="footer-col">
+                    <div class="footer-col-title">Portfolio</div>
+                    <a href="#">Background Research</a>
+                    <a href="#">Idea Generation</a>
+                    <a href="#">Pitching Ideas</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+            <span>© 2026 Samuel Olaniyi. All rights reserved.</span>
+            <span class="footer-credit">Red Bull Basement Portfolio</span>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: false, mirror: true, offset: 80 });
+
+        // MOBILE MENU TOGGLE
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('#nav-menu a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
