@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMUEL OLANIYI | ENVIRONMENTAL RESEARCH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root { --rb-navy:#000b29; --rb-red:#da0a1c; --rb-yellow:#ffcc00; --rb-silver:#dae0e6; --white:#ffffff; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { overflow-x:hidden; scroll-behavior:smooth; }
+        body { font-family:'Montserrat',sans-serif; color:var(--white); background:#080808; }
+
+        header { position:fixed; top:0; width:100%; padding:18px 60px; display:flex; justify-content:space-between; align-items:center; z-index:200; background:rgba(0,11,41,0.92); backdrop-filter:blur(20px); }
+        .logo { font-weight:900; font-size:1.3rem; letter-spacing:-1px; font-style:italic; text-decoration:none; color:var(--white); }
+        nav { background:rgba(255,255,255,0.07); backdrop-filter:blur(20px); padding:10px 28px; border-radius:100px; border:1px solid rgba(255,255,255,0.12); display:flex; gap:24px; }
+        nav a { text-decoration:none; color:var(--white); font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; opacity:0.6; transition:0.3s; }
+        nav a:hover, nav a.active { opacity:1; color:var(--rb-yellow); }
+        .cta-btn { background:var(--white); color:var(--rb-navy); padding:11px 24px; border-radius:100px; text-decoration:none; font-weight:800; font-size:0.72rem; text-transform:uppercase; letter-spacing:1px; transition:0.3s; display:inline-flex; align-items:center; gap:6px; white-space:nowrap; }
+        .cta-btn:hover { background:var(--rb-red); color:#fff; }
+        .hamburger { display:none; flex-direction:column; gap:6px; cursor:pointer; z-index:1001; }
+        .hamburger span { width:30px; height:3px; background:var(--white); transition:0.3s; }
+
+        /* DIAGONAL SPLIT HERO */
+        #hero { height:100vh; display:grid; grid-template-columns:55% 45%; position:relative; overflow:hidden; }
+        .hero-left { background:linear-gradient(160deg,#000b29,#001040); display:flex; flex-direction:column; justify-content:flex-end; padding:130px 70px 80px; position:relative; }
+        .hero-right { position:relative; overflow:hidden; }
+        .hero-right img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+        .hero-tag { font-size:0.62rem; font-weight:700; letter-spacing:5px; text-transform:uppercase; color:var(--rb-red); margin-bottom:22px; }
+        .hero-h1 { font-size:clamp(2.8rem,4.5vw,6rem); font-weight:900; text-transform:uppercase; letter-spacing:-4px; line-height:0.85; }
+        .hero-h1 .red { color:var(--rb-red); }
+        .hero-scroll { position:absolute; bottom:44px; left:70px; display:flex; align-items:center; gap:12px; font-size:0.6rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.25); }
+        .hero-scroll::before { content:''; display:block; width:40px; height:1px; background:var(--rb-red); }
+        .hero-ghost { font-size:11rem; font-weight:900; color:rgba(255,255,255,0.03); letter-spacing:-8px; line-height:1; position:absolute; bottom:50px; right:10px; }
+
+        /* MARQUEE */
+        .marquee-strip { background:var(--rb-red); padding:13px 0; overflow:hidden; white-space:nowrap; }
+        .marquee-inner { display:inline-flex; gap:60px; animation:marquee 20s linear infinite; }
+        .marquee-inner span { font-size:0.68rem; font-weight:900; text-transform:uppercase; letter-spacing:3px; }
+        .marquee-inner .sep { color:rgba(255,255,255,0.4); }
+        @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+        /* SECTIONS */
+        .sec { padding:120px 10%; position:relative; overflow:hidden; }
+        .sec.dark { background:#050505; }
+        .sec.mid { background:#0a0a0a; }
+        .sec.black { background:#000; }
+        .s-inner { max-width:1200px; margin:0 auto; }
+        .eyebrow { font-size:0.6rem; font-weight:700; letter-spacing:5px; text-transform:uppercase; color:var(--rb-red); margin-bottom:18px; }
+        .sec-h { font-size:clamp(2.4rem,4vw,4.5rem); font-weight:900; text-transform:uppercase; letter-spacing:-3px; line-height:0.88; }
+        .sec-h em { color:var(--rb-yellow); font-style:normal; }
+        .bar { width:38px; height:3px; background:var(--rb-red); margin:26px 0 36px; }
+        .body-text { font-size:0.88rem; line-height:1.85; color:rgba(255,255,255,0.58); }
+
+        /* SPLIT */
+        .split { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+        .split-l { padding-right:80px; border-right:1px solid rgba(255,255,255,0.06); display:flex; flex-direction:column; justify-content:center; }
+        .split-r { padding-left:80px; display:flex; flex-direction:column; justify-content:center; }
+
+        /* CARD STACK */
+        .card-stack { display:flex; flex-direction:column; gap:2px; }
+        .s-card { padding:24px 26px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-left:3px solid transparent; transition:all 0.3s; }
+        .s-card:hover { border-left-color:var(--rb-red); background:rgba(255,255,255,0.055); }
+        .s-card-lbl { font-size:0.6rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--rb-yellow); margin-bottom:10px; }
+        .s-card-txt { font-size:0.83rem; line-height:1.75; color:rgba(255,255,255,0.52); }
+
+        /* FULL-WIDTH QUOTE */
+        .quote-wrap { text-align:center; position:relative; overflow:hidden; padding:100px 10%; background:#000; }
+        .q-ghost { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:22vw; font-weight:900; color:rgba(255,255,255,0.016); white-space:nowrap; letter-spacing:-10px; pointer-events:none; }
+        .q-mark { font-size:5rem; font-weight:900; color:var(--rb-red); opacity:0.35; line-height:0.6; margin-bottom:24px; }
+        .q-text { font-size:clamp(1.1rem,2.2vw,1.9rem); font-weight:700; letter-spacing:-0.5px; line-height:1.45; max-width:860px; margin:0 auto; }
+        .q-cite { margin-top:28px; font-size:0.6rem; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:rgba(255,255,255,0.28); }
+
+        /* PILLARS */
+        .pillars { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,0.06); margin-top:56px; }
+        .pillar { background:#0a0a0a; padding:38px 28px; position:relative; overflow:hidden; }
+        .pillar-ghost { position:absolute; top:10px; right:14px; font-size:5rem; font-weight:900; color:rgba(255,255,255,0.05); letter-spacing:-4px; line-height:1; }
+        .pillar-bar { width:28px; height:2px; background:var(--rb-red); margin-bottom:18px; }
+        .pillar-lbl { font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--rb-yellow); margin-bottom:12px; }
+        .pillar-txt { font-size:0.82rem; line-height:1.78; color:rgba(255,255,255,0.52); }
+
+        /* STAT GRID */
+        .stat-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:rgba(255,255,255,0.06); }
+        .stat-cell { background:#080808; padding:36px 28px; }
+        .stat-n { font-size:2.8rem; font-weight:900; letter-spacing:-3px; color:var(--white); line-height:1; }
+        .stat-l { font-size:0.6rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.28); margin-top:8px; }
+
+        .pill { display:inline-block; background:rgba(218,10,28,0.1); border:1px solid rgba(218,10,28,0.2); color:rgba(255,255,255,0.42); font-size:0.58rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 16px; border-radius:100px; margin-top:36px; }
+
+        /* NEXT CTA */
+        .next-cta { background:#000; padding:90px 10%; display:flex; justify-content:space-between; align-items:center; gap:40px; border-top:1px solid rgba(255,255,255,0.06); }
+        .next-l .next-label { font-size:0.6rem; font-weight:700; letter-spacing:5px; text-transform:uppercase; color:rgba(255,255,255,0.28); margin-bottom:14px; }
+        .next-l .next-title { font-size:clamp(2rem,4vw,4rem); font-weight:900; text-transform:uppercase; letter-spacing:-3px; line-height:0.9; }
+        .next-btn { display:inline-flex; align-items:center; gap:14px; background:var(--rb-red); color:var(--white); padding:18px 32px; text-decoration:none; font-weight:800; font-size:0.76rem; text-transform:uppercase; letter-spacing:2px; transition:all 0.3s; white-space:nowrap; border-radius:2px; }
+        .next-btn:hover { background:var(--white); color:var(--rb-red); }
+
+        footer { background:#000; border-top:1px solid rgba(255,255,255,0.06); padding:70px 10% 36px; }
+        .f-inner { max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:flex-start; gap:60px; padding-bottom:50px; border-bottom:1px solid rgba(255,255,255,0.06); }
+        .f-logo { font-weight:900; font-size:1.5rem; letter-spacing:-1px; font-style:italic; margin-bottom:12px; }
+        .f-tag { font-size:0.74rem; color:rgba(255,255,255,0.28); line-height:1.8; }
+        .f-nav { display:flex; gap:80px; }
+        .f-col { display:flex; flex-direction:column; gap:12px; }
+        .f-col-title { font-size:0.6rem; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--rb-red); margin-bottom:6px; }
+        .f-col a { text-decoration:none; color:rgba(255,255,255,0.38); font-size:0.8rem; font-weight:600; transition:color 0.3s; }
+        .f-col a:hover { color:var(--white); }
+        .f-bottom { max-width:1200px; margin:0 auto; padding-top:28px; display:flex; justify-content:space-between; font-size:0.66rem; color:rgba(255,255,255,0.18); letter-spacing:1px; text-transform:uppercase; }
+
+        @media(max-width:1024px) {
+            #hero { grid-template-columns:1fr 1fr; }
+            .hero-left { padding:120px 40px 60px; }
+        }
+        @media(max-width:700px) {
+            #hero { grid-template-columns:1fr; grid-template-rows:auto 300px; height:auto; padding-top:80px; }
+            .hero-left { padding:60px 32px 40px; justify-content:center; }
+            .hero-right { display:block; height:300px; }
+            .split { grid-template-columns:1fr; }
+            .split-l { padding-right:0; border-right:none; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:60px; margin-bottom:60px; }
+            .split-r { padding-left:0; }
+            .pillars { grid-template-columns:1fr; }
+            .stat-grid { grid-template-columns:1fr 1fr; }
+        }
+        @media(max-width:768px) {
+            header { padding:18px 24px; }
+            .cta-btn { display:none; }
+            .hamburger { display:flex; }
+            nav { display:none; flex-direction:column; position:fixed; top:0; left:0; width:100%; height:100vh; background:var(--rb-navy); justify-content:center; align-items:center; gap:30px; z-index:1000; border-radius:0; border:none; }
+            nav.active { display:flex; }
+            nav a { font-size:1.3rem; opacity:1; }
+            .hamburger.active span:nth-child(1){transform:translateY(9px) rotate(45deg);}
+            .hamburger.active span:nth-child(2){opacity:0;}
+            .hamburger.active span:nth-child(3){transform:translateY(-9px) rotate(-45deg);}
+            .sec { padding:80px 6%; }
+            .stat-grid { grid-template-columns:1fr; }
+            .next-cta { flex-direction:column; align-items:flex-start; }
+            .f-inner { flex-direction:column; gap:40px; }
+            .f-nav { flex-direction:column; gap:30px; }
+            .f-bottom { flex-direction:column; gap:10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header data-aos="fade-down" data-aos-duration="900">
+    <a href="index.html" class="logo">SAMUEL O.</a>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    <nav id="nav-menu">
+        <a href="index.html">Home</a><a href="about.html">About</a><a href="background.html">Background</a>
+        <a href="idea.html">Ideas</a><a href="environmental.html" class="active">Environmental</a>
+        <a href="creativedirection.html">Creative</a><a href="pitch2.html">Pitch</a>
+        <a href="reflection.html">Reflection</a><a href="reference.html">References</a>
+    </nav>
+    <a href="#" class="cta-btn">Get In Touch →</a>
+</header>
+
+<section id="hero">
+    <div class="hero-left" data-aos="fade-right" data-aos-duration="1200">
+        <p class="hero-tag">Campaign Element 01</p>
+        <h1 class="hero-h1">ENVIRON<span class="red">MENT</span>AL<br>RESEARCH</h1>
+        <div class="hero-scroll">Scroll to explore</div>
+        <div class="hero-ghost">01</div>
+    </div>
+    <div class="hero-right" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+        <img src="uni.jpg" alt="University of Northampton campus">
+    </div>
+</section>
+
+<div class="marquee-strip">
+    <div class="marquee-inner">
+        <span>Location Scout</span><span class="sep">◆</span><span>Campus Research</span><span class="sep">◆</span>
+        <span>Pre-Production</span><span class="sep">◆</span><span>Spatial Analysis</span><span class="sep">◆</span>
+        <span>Narrative Environment</span><span class="sep">◆</span><span>Visual Rhythm</span><span class="sep">◆</span>
+        <span>Location Scout</span><span class="sep">◆</span><span>Campus Research</span><span class="sep">◆</span>
+        <span>Pre-Production</span><span class="sep">◆</span><span>Spatial Analysis</span><span class="sep">◆</span>
+        <span>Narrative Environment</span><span class="sep">◆</span><span>Visual Rhythm</span><span class="sep">◆</span>
+    </div>
+</div>
+
+<section class="sec mid">
+    <div class="s-inner">
+        <div class="split">
+            <div class="split-l" data-aos="fade-right" data-aos-duration="900">
+                <p class="eyebrow">01 — The Role</p>
+                <h2 class="sec-h">Location<br><em>Scout</em></h2>
+                <div class="bar"></div>
+                <p class="body-text">My role was to visit the university campus and capture the physical environment from the perspective of a student discovering Red Bull Basement for the first time. This was not simply about taking photographs — it was about understanding how space shapes story, and how the right environment makes a narrative feel authentic rather than staged.</p>
+                <div class="pill">Campaign Element — Environmental Research</div>
+            </div>
+            <div class="split-r" data-aos="fade-left" data-aos-duration="900" data-aos-delay="150">
+                <div class="card-stack">
+                    <div class="s-card">
+                        <div class="s-card-lbl">Discovery Beat</div>
+                        <div class="s-card-txt">Identifying spaces where a student might naturally pause and notice a poster — unforced, believable entry points into the narrative arc.</div>
+                    </div>
+                    <div class="s-card">
+                        <div class="s-card-lbl">Doubt → Action Beat</div>
+                        <div class="s-card-txt">Library study areas and quieter corners — environments carrying the weight of someone working through a problem without yet knowing the answer.</div>
+                    </div>
+                    <div class="s-card">
+                        <div class="s-card-lbl">Confidence Beat</div>
+                        <div class="s-card-txt">More open, social spaces where the energy shifts — supporting the emotional resolution as the student submits their application.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="quote-wrap">
+    <div class="q-ghost">SPACE</div>
+    <div data-aos="fade-up" data-aos-duration="1000">
+        <div class="q-mark">"</div>
+        <p class="q-text">Environment functions as a form of non-verbal communication, conveying mood and context before a single word is spoken.</p>
+        <p class="q-cite">Millerson & Owens, 2012 — Television Production</p>
+    </div>
+</div>
+
+<section class="sec dark">
+    <div class="s-inner">
+        <div data-aos="fade-up" data-aos-duration="900">
+            <p class="eyebrow">02 — Theoretical Framework</p>
+            <h2 class="sec-h">Space &<br><em>Meaning</em></h2>
+            <div class="bar"></div>
+        </div>
+        <div class="pillars" data-aos="fade-up" data-aos-duration="900" data-aos-delay="100">
+            <div class="pillar">
+                <div class="pillar-ghost">01</div>
+                <div class="pillar-bar"></div>
+                <div class="pillar-lbl">Non-Verbal Communication</div>
+                <div class="pillar-txt">Millerson and Owens (2012) note that environment conveys mood and context before a word is spoken. Every location had to function as silent storytelling, supporting the emotional register of each beat without the audience consciously noticing.</div>
+            </div>
+            <div class="pillar">
+                <div class="pillar-ghost">02</div>
+                <div class="pillar-bar"></div>
+                <div class="pillar-lbl">Place & Lived Experience</div>
+                <div class="pillar-txt">Relph (1976) argued that place carries meaning through lived experience. For a student-focused campaign, locations had to feel genuinely inhabited — not like sets. Each space carried a different emotional weight aligned to different story beats.</div>
+            </div>
+            <div class="pillar">
+                <div class="pillar-ghost">03</div>
+                <div class="pillar-bar"></div>
+                <div class="pillar-lbl">Visual Rhythm & Depth</div>
+                <div class="pillar-txt">Barnwell (2004) outlines how production designers consider foreground, midground and background as contributors to depth and viewer attention. This framework informed how I documented and recommended each space to the team.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="sec mid">
+    <div class="s-inner">
+        <div class="split">
+            <div class="split-l" data-aos="fade-right" data-aos-duration="900">
+                <p class="eyebrow">03 — Brand Insight</p>
+                <h2 class="sec-h">On the<br><em>Ground</em></h2>
+                <div class="bar"></div>
+                <p class="body-text">WARC (2023) highlights that campaigns targeting Gen Z perform significantly better when they reflect genuine environments over aspirational or artificial ones. Red Bull Basement positions itself as a platform for real student ideas — so the campus environment needed to reflect that truth. The visit involved noting natural light, footfall patterns, and how each space would read on camera, moving between creative thinking and practical production logic simultaneously.</p>
+                <div class="pill">Sources: Millerson & Owens (2012), Relph (1976), Barnwell (2004), WARC (2023)</div>
+            </div>
+            <div class="split-r" data-aos="fade-left" data-aos-duration="900" data-aos-delay="150">
+                <div class="stat-grid">
+                    <div class="stat-cell"><div class="stat-n">3</div><div class="stat-l">Narrative Beats Mapped</div></div>
+                    <div class="stat-cell"><div class="stat-n">UON</div><div class="stat-l">Primary Campus Location</div></div>
+                    <div class="stat-cell"><div class="stat-n">4+</div><div class="stat-l">Academic Sources</div></div>
+                    <div class="stat-cell"><div class="stat-n">100%</div><div class="stat-l">Location-Led Narrative</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="next-cta">
+    <div class="next-l" data-aos="fade-right" data-aos-duration="800">
+        <p class="next-label">Up Next</p>
+        <h2 class="next-title">Creative<br>Direction</h2>
+    </div>
+    <a href="creativedirection.html" class="next-btn" data-aos="fade-left" data-aos-duration="800">View Page →</a>
+</div>
+
+<footer>
+    <div class="f-inner">
+        <div><div class="f-logo">SAMUEL O.</div><p class="f-tag">Red Bull Basement Portfolio<br>University Module — 2026</p></div>
+        <div class="f-nav">
+            <div class="f-col"><div class="f-col-title">AS1 Pages</div><a href="index.html">Home</a><a href="about.html">About</a><a href="background.html">Background</a><a href="idea.html">Ideas</a><a href="reference.html">References</a></div>
+            <div class="f-col"><div class="f-col-title">AS2 Pages</div><a href="environmental.html">Environmental</a><a href="creative-direction.html">Creative Direction</a><a href="pitch.html">Pitch Evidence</a><a href="reflection.html">Reflection</a></div>
+        </div>
+    </div>
+    <div class="f-bottom"><span>© 2026 Samuel Olaniyi. All rights reserved.</span><span>MKT2050 — Assessment 2</span></div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ once:false, mirror:true, offset:80 });
+    const h = document.getElementById('hamburger'), n = document.getElementById('nav-menu');
+    h.addEventListener('click', () => { h.classList.toggle('active'); n.classList.toggle('active'); });
+    document.querySelectorAll('#nav-menu a').forEach(l => l.addEventListener('click', () => { h.classList.remove('active'); n.classList.remove('active'); }));
+</script>
+</body>
+</html>
