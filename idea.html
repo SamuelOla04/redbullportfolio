@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMUEL OLANIYI | IDEA GENERATION</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --rb-navy:   #000b29;
+            --rb-royal:  #001a5d;
+            --rb-red:    #da0a1c;
+            --rb-yellow: #ffcc00;
+            --rb-silver: #dae0e6;
+            --white:     #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { overflow-x: hidden; scroll-behavior: smooth; }
+        body { font-family: 'Montserrat', sans-serif; color: var(--white); }
+
+        header { position: fixed; top: 0; width: 100%; padding: 18px 60px; display: flex; justify-content: space-between; align-items: center; z-index: 200; background: rgba(0, 11, 41, 0.92); backdrop-filter: blur(20px); }
+        .logo { font-weight: 900; font-size: 1.3rem; letter-spacing: -1px; font-style: italic; text-decoration: none; color: var(--white); }
+        nav { background: rgba(255,255,255,0.07); backdrop-filter: blur(20px); padding: 10px 28px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.12); display: flex; gap: 24px; }
+        nav a { text-decoration: none; color: var(--white); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.6; transition: 0.3s; }
+        nav a:hover { opacity: 1; color: var(--rb-yellow); }
+        nav a.active { opacity: 1; color: var(--rb-yellow); }
+        .cta-btn { background: var(--white); color: var(--rb-navy); padding: 11px 24px; border-radius: 100px; text-decoration: none; font-weight: 800; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .cta-btn:hover { background: var(--rb-red); color: #fff; }
+        .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1001; }
+        .hamburger span { width: 30px; height: 3px; background: var(--white); transition: 0.3s; }
+
+        #hero { height: 100vh; background: linear-gradient(135deg, #000b29 0%, #001a5d 60%, #0a0a3e 100%); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; overflow: hidden; }
+        #hero .blob { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.25; pointer-events: none; animation: drift linear infinite; }
+        .b1 { width: 700px; height: 700px; background: var(--rb-silver); top: -15%; left: -10%; animation-duration: 28s; }
+        .b2 { width: 900px; height: 900px; background: #001a5d; bottom: -20%; right: -10%; animation-duration: 38s; animation-direction: reverse; }
+        @keyframes drift { 0% { transform: translate(0,0) rotate(0deg) scale(1); } 50% { transform: translate(120px,80px) rotate(180deg) scale(1.15); } 100% { transform: translate(0,0) rotate(360deg) scale(1); } }
+        .hero-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; color: var(--rb-red); margin-bottom: 20px; position: relative; z-index: 1; }
+        #hero h1 { font-size: clamp(3rem, 8vw, 8rem); font-weight: 900; letter-spacing: -4px; text-transform: uppercase; line-height: 0.9; position: relative; z-index: 1; }
+
+        .research-section { padding: 130px 10%; position: relative; overflow: hidden; }
+        .research-section:nth-child(odd) { background: #0a0a0a; }
+        .research-section:nth-child(even) { background: #060606; }
+        .section-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+        .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--rb-red); margin-bottom: 18px; }
+        .section-title { font-size: clamp(2.2rem, 4.5vw, 4rem); font-weight: 900; text-transform: uppercase; letter-spacing: -3px; line-height: 1; color: var(--white); }
+        .accent-line { width: 56px; height: 4px; background: var(--rb-red); margin: 24px 0 40px; }
+        .text-center { text-align: center !important; }
+        .text-center .accent-line { margin: 24px auto 40px; }
+        .watermark { position: absolute; right: -2%; top: 50%; transform: translateY(-50%); font-size: 18vw; font-weight: 900; color: rgba(255,255,255,0.02); letter-spacing: -10px; pointer-events: none; user-select: none; white-space: nowrap; }
+
+        .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 50px; }
+        .info-col-title { display: block; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--rb-yellow); margin-bottom: 15px; }
+        .info-grid p { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.65); }
+
+        .idea-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 50px; }
+        .idea-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 32px 28px; position: relative; transition: all 0.3s ease; }
+        .idea-card:hover { background: rgba(255,255,255,0.06); transform: translateY(-4px); }
+        .idea-card.chosen { border-color: var(--rb-red); background: rgba(218,10,28,0.06); }
+        .idea-card.chosen::after { content: '✓ CHOSEN'; position: absolute; top: 16px; right: 16px; font-size: 0.6rem; font-weight: 700; letter-spacing: 2px; color: var(--rb-red); background: rgba(218,10,28,0.15); padding: 4px 10px; border-radius: 100px; }
+        .idea-card.rejected::after { content: '✕ NOT CHOSEN'; position: absolute; top: 16px; right: 16px; font-size: 0.6rem; font-weight: 700; letter-spacing: 2px; color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 100px; }
+        .idea-number { font-size: 0.65rem; font-weight: 700; letter-spacing: 3px; color: rgba(255,255,255,0.25); text-transform: uppercase; margin-bottom: 12px; }
+        .idea-card h3 { font-size: 1.1rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.5px; color: var(--white); margin-bottom: 16px; line-height: 1.2; }
+        .idea-card p { font-size: 0.85rem; line-height: 1.7; color: rgba(255,255,255,0.5); }
+
+        .brainstorm-img { width: 100%; max-width: 680px; height: auto; margin: 0 auto 20px; display: block; border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+
+        .narrative-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: 40px 0; }
+        .narrative-step { padding: 32px 28px; border: 1px solid rgba(255,255,255,0.07); position: relative; }
+        .narrative-step:not(:last-child)::after { content: '→'; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: var(--rb-red); z-index: 2; }
+        .narrative-tag { font-size: 0.6rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--rb-red); margin-bottom: 12px; }
+        .narrative-step h4 { font-size: 1rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.5px; color: var(--white); margin-bottom: 10px; }
+        .narrative-step p { font-size: 0.82rem; line-height: 1.7; color: rgba(255,255,255,0.5); }
+
+        .shot-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 40px 0; }
+        .shot-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-top: 3px solid var(--rb-red); border-radius: 8px; padding: 24px 20px; }
+        .shot-number { font-size: 0.65rem; font-weight: 700; letter-spacing: 3px; color: var(--rb-red); text-transform: uppercase; margin-bottom: 12px; }
+        .shot-item p { font-size: 0.82rem; line-height: 1.6; color: rgba(255,255,255,0.55); }
+
+        .source-tag { display: inline-block; background: rgba(218,10,28,0.1); border: 1px solid rgba(218,10,28,0.25); color: rgba(255,255,255,0.5); font-size: 0.62rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; margin-top: 32px; }
+
+        .platform-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 40px 0; }
+        .platform-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 32px 28px; }
+        .platform-card h4 { font-size: 1.1rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.5px; color: var(--white); margin-bottom: 14px; }
+        .platform-card p { font-size: 0.85rem; line-height: 1.7; color: rgba(255,255,255,0.5); }
+
+        .view-btn { display: inline-block; background: transparent; color: var(--white); padding: 16px 36px; border-radius: 100px; text-decoration: none; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; border: 2px solid var(--rb-red); transition: all 0.35s ease; margin-top: 40px; }
+        .view-btn:hover { background: var(--rb-red); transform: scale(1.05); box-shadow: 0 0 40px rgba(218,10,28,0.35); }
+
+        footer { background: #000; border-top: 1px solid rgba(255,255,255,0.07); padding: 80px 10% 40px; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; gap: 60px; padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .footer-logo { font-weight: 900; font-size: 1.6rem; letter-spacing: -1px; font-style: italic; margin-bottom: 16px; }
+        .footer-tagline { font-size: 0.78rem; color: rgba(255,255,255,0.35); line-height: 1.8; }
+        .footer-nav { display: flex; gap: 80px; }
+        .footer-col { display: flex; flex-direction: column; gap: 14px; }
+        .footer-col-title { font-size: 0.65rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--rb-red); margin-bottom: 6px; }
+        .footer-col a { text-decoration: none; color: rgba(255,255,255,0.45); font-size: 0.82rem; font-weight: 600; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--white); }
+        .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 32px; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; color: rgba(255,255,255,0.2); letter-spacing: 1px; text-transform: uppercase; }
+
+        @media (max-width: 992px) {
+            .idea-cards { grid-template-columns: 1fr; }
+            .narrative-row { grid-template-columns: 1fr; }
+            .narrative-step:not(:last-child)::after { display: none; }
+            .shot-list { grid-template-columns: repeat(2, 1fr); }
+            .platform-row { grid-template-columns: 1fr; }
+            .info-grid { grid-template-columns: 1fr; gap: 30px; }
+            .accent-line { margin: 24px auto 40px; }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 18px 24px; }
+            .cta-btn { display: none; }
+            .hamburger { display: flex; }
+            nav { display: none; flex-direction: column; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--rb-navy); justify-content: center; align-items: center; gap: 30px; z-index: 1000; border-radius: 0; border: none; }
+            nav.active { display: flex; }
+            nav a { font-size: 1.5rem; opacity: 1; }
+            .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+            .research-section { padding: 80px 6%; }
+            .shot-list { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; align-items: center; text-align: center; gap: 40px; }
+            .footer-nav { gap: 40px; flex-direction: column; align-items: center; }
+            .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header data-aos="fade-down" data-aos-duration="900">
+        <a href="index.html" class="logo">SAMUEL O.</a>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        <nav id="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="background.html">Background</a>
+            <a href="idea.html" class="active">Ideas</a>
+            <a href="reference.html">References</a>
+            <a href="environmental.html">Environmental</a>
+             <a href="creativedirection.html">Creative</a><a href="pitch2.html">Pitch</a>
+        <a href="reflection.html">Reflection</a>
+        </nav>
+        <a href="#" class="cta-btn">Get In Touch →</a>
+    </header>
+
+    <section id="hero">
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div data-aos="zoom-out" data-aos-duration="1400">
+           
+            <h1>Idea<br>Generation</h1>
+        </div>
+    </section>
+
+    <!-- SECTION 1: THREE IDEAS -->
+    <section class="research-section text-center">
+        <div class="watermark">IDEAS</div>
+        <div class="section-inner">
+            <div data-aos="fade-up" data-aos-duration="900">
+                <div class="section-label">01 — The Concepts</div>
+                <h2 class="section-title">Three Ideas<br>Considered</h2>
+                <div class="accent-line"></div>
+            </div>
+            <p style="font-size:0.95rem; line-height:1.9; color:rgba(255,255,255,0.65); max-width:800px; margin: 0 auto 50px;" data-aos="fade-up" data-aos-duration="900" data-aos-delay="100">Idea generation is an important phase in the performance of any marketing campaign. According to Marketing91 (2025), generating  new ideas is vital in generating a strong backbone for any campaign or business objective. Taking time to brainstorming and thinking freely allows marketers to organise their gathering, explore multiple avenues and make more righteous decisions. In the framework of this portfolio, the idea generation process was an asset in identifying the most suitable campaign concept for Red Bull Basement cementing the final idea was not simply the first thought, but the best one.
+ </p>
+            <div class="idea-cards" data-aos="fade-up" data-aos-duration="900" data-aos-delay="150">
+                <div class="idea-card rejected">
+                    <div class="idea-number">Idea 01</div>
+                    <h3>UGC Micro-Influencer Unboxing</h3>
+                    <p>Influencers assemble a Red Bull pack and promote the Basement opportunity to their audience. Although this concept offered a wider reach, it lacked the authentic and personal storytelling needed to genuinely align with the target audience.
+</p>
+                </div>
+                <div class="idea-card rejected">
+                    <div class="idea-number">Idea 02</div>
+                    <h3>Event Attendee POV</h3>
+                    <p>The concept framed around A POV video following a student at a Red Bull event. Visually appealing, but felt less personal and less relevant to the Red Bull Basement application process itself.</p>
+                </div>
+                <div class="idea-card chosen">
+                    <div class="idea-number">Idea 03</div>
+                    <h3>Application Journey POV</h3>
+                    <p>Documenting a student's journey from discovering Red Bull Basement to submitting their application. Chosen for its authenticity and personalisation with short-form platforms like TikTok and Instagram Reels.</p>
+                </div>
+            </div>
+            <div class="source-tag">Source: Marketing91 (2025)</div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: BRAINSTORM -->
+    <section class="research-section text-center">
+        <div class="watermark">BRAINSTORM</div>
+        <div class="section-inner">
+            <div data-aos="fade-up" data-aos-duration="900">
+                <div class="section-label">02 — Visual Brainstorm</div>
+                <h2 class="section-title">Brain<br>Storming</h2>
+                <div class="accent-line"></div>
+            </div>
+            <img src="brainstorm.png" alt="Mind Map" class="brainstorm-img" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150">
+            <p style="font-size:0.82rem; color:rgba(255,255,255,0.35); margin-top:16px; margin-bottom:60px;">Mind map created using generative AI (ChatGPT, 2026) to visualise and structure the brainstorming process.</p>
+            <div data-aos="fade-up" data-aos-duration="900">
+                <div class="section-label" style="text-align:center;">Initial Brainstorm</div>
+                <h3 style="font-size:clamp(1.5rem,3vw,2.5rem); font-weight:900; text-transform:uppercase; letter-spacing:-2px; color:var(--white); margin-bottom:16px;">Padlet Board</h3>
+                <div class="accent-line"></div>
+            </div>
+            <img src="padlet.png" alt="Padlet Board" class="brainstorm-img" style="max-width:600px;" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150">
+            <p style="font-size:0.82rem; color:rgba(255,255,255,0.35); margin-top:16px;">Initial brainstorming captured on Padlet prior to developing and refining the final campaign concepts.</p>
+        </div>
+    </section>
+
+    <!-- SECTION 3: NARRATIVE & SHOTS -->
+    <section class="research-section">
+        <div class="watermark">PITCH</div>
+        <div class="section-inner">
+            <div data-aos="fade-up" data-aos-duration="900">
+                <div class="section-label">03 — The Pitch</div>
+                <h2 class="section-title">Narrative &<br>Shot List</h2>
+                <div class="accent-line"></div>
+            </div>
+            <div class="narrative-row" data-aos="fade-up" data-aos-duration="900" data-aos-delay="100">
+                <div class="narrative-step">
+                    <div class="narrative-tag">Beginning</div>
+                    <h4>Discovery</h4>
+                    <p>A student on campus notices Red Bull Basement online or via a poster and stumbles upon it supporting students creativity.</p>
+                </div>
+                <div class="narrative-step">
+                    <div class="narrative-tag">Middle</div>
+                    <h4>Doubt → Action</h4>
+                    <p>The student begins thinking about their idea — bits of brainstorming, and visualising what their campaign could become.</p>
+                </div>
+                <div class="narrative-step">
+                    <div class="narrative-tag">End</div>
+                    <h4>Confidence</h4>
+                    <p>The student submits their application to apply to Red Bull Basement."</p>
+                </div>
+            </div>
+            <div class="shot-list" data-aos="fade-up" data-aos-duration="900" data-aos-delay="150">
+                <div class="shot-item">
+                    <div class="shot-number">Shot 01</div>
+                    <p>Camera shot of student scrolling and discovering the Red Bull Basement page.</p>
+                </div>
+                <div class="shot-item">
+                    <div class="shot-number">Shot 02</div>
+                    <p>Close-up of laptop shot showing the Red Bull Basement website and application form.</p>
+                </div>
+                <div class="shot-item">
+                    <div class="shot-number">Shot 03</div>
+                    <p>Camera shot of student brainstorming and developing ideas in a notebook or typing on their laptop.</p>
+                </div>
+                <div class="shot-item">
+                    <div class="shot-number">Shot 04</div>
+                    <p>Student clicking "Submit" and smiling whilst walking across campus in confidence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: PLATFORM -->
+    <section class="research-section text-center">
+        <div class="watermark">PLATFORM</div>
+        <div class="section-inner">
+            <div data-aos="fade-up" data-aos-duration="900">
+                <div class="section-label">04 — Distribution</div>
+                <h2 class="section-title">Platform<br>Strategy</h2>
+                <div class="accent-line"></div>
+            </div>
+            <div class="platform-row" data-aos="fade-up" data-aos-duration="900" data-aos-delay="150">
+                <div class="platform-card">
+                    <h4>TikTok</h4>
+                    <p>The primary platform for this campaign is to deliver short form content. The POV format is native to TikTok's content algorithm,making the video feel organic rather than promotional to the university student audience.</p>
+                </div>
+                <div class="platform-card">
+                    <h4>Instagram Reels</h4>
+                    <p>Extends the campaign's reach to students who may not be on TikTok, maximising reach across two of the most known platforms among Gen Z.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="background:#030303; padding: 100px 10%; text-align:center;">
+        <div data-aos="fade-up" data-aos-duration="900">
+            <div class="section-label" style="text-align:center;">Up Next</div>
+            <h2 class="section-title" style="font-size: clamp(2rem, 4vw, 3.5rem);">View All<br>References</h2>
+            <a href="reference.html" class="view-btn">View References →</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner" data-aos="fade-up" data-aos-duration="800">
+            <div class="footer-brand">
+                <div class="footer-logo">SAMUEL O.</div>
+                <p class="footer-tagline">Red Bull Basement Portfolio<br>University Module — 2026</p>
+            </div>
+            <div class="footer-nav">
+                <div class="footer-col">
+                    <div class="footer-col-title">Pages</div>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="background.html">Background</a>
+                    <a href="ideas.html">Ideas</a>
+                    <a href="reference.html">References</a>
+                </div>
+                <div class="footer-col">
+                    <div class="footer-col-title">Portfolio</div>
+                    <a href="background.html">Background Research</a>
+                    <a href="idea.html">Idea Generation</a>
+                    <a href="reference.html">References</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Samuel Olaniyi. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: false, mirror: true, offset: 80 });
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('#nav-menu a');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
